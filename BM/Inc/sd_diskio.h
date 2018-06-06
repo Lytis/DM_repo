@@ -1,8 +1,7 @@
 /**
   ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
+  * @file    sd_diskio.h (based on sd_diskio_dma_template.h v2.0.2)
+  * @brief   Header for sd_diskio.c module
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -48,65 +47,25 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H__
-#define __MAIN_H__
+#ifndef __SD_DISKIO_H
+#define __SD_DISKIO_H
+
+/* USER CODE BEGIN firstSection */ 
+/* can be used to modify / undefine following code or add new definitions */
+/* USER CODE END firstSection */
 
 /* Includes ------------------------------------------------------------------*/
+#include "bsp_driver_sd.h"
+/* Exported types ------------------------------------------------------------*/
+/* Exported constants --------------------------------------------------------*/
+/* Exported functions ------------------------------------------------------- */
+extern const Diskio_drvTypeDef  SD_Driver;
 
-/* USER CODE BEGIN Includes */
+/* USER CODE BEGIN lastSection */ 
+/* can be used to modify / undefine previous code or add new definitions */
+/* USER CODE END lastSection */
 
-/* USER CODE END Includes */
-
-/* Private define ------------------------------------------------------------*/
-
-#define SPI_DIR_4_Pin GPIO_PIN_3
-#define SPI_DIR_4_GPIO_Port GPIOE
-#define CLOCK_OUT_EN_Pin GPIO_PIN_0
-#define CLOCK_OUT_EN_GPIO_Port GPIOF
-#define SPI_DIR_5_Pin GPIO_PIN_8
-#define SPI_DIR_5_GPIO_Port GPIOF
-#define SDIO_CD_Pin GPIO_PIN_5
-#define SDIO_CD_GPIO_Port GPIOC
-#define LED_1_Pin GPIO_PIN_2
-#define LED_1_GPIO_Port GPIOG
-#define LED_2_Pin GPIO_PIN_3
-#define LED_2_GPIO_Port GPIOG
-#define LED_3_Pin GPIO_PIN_4
-#define LED_3_GPIO_Port GPIOG
-#define SPI_DIR_3_Pin GPIO_PIN_11
-#define SPI_DIR_3_GPIO_Port GPIOC
-#define UART_DIR_4_Pin GPIO_PIN_0
-#define UART_DIR_4_GPIO_Port GPIOD
-#define UART_DIR_2_Pin GPIO_PIN_4
-#define UART_DIR_2_GPIO_Port GPIOD
-#define SPI_DIR_6_Pin GPIO_PIN_15
-#define SPI_DIR_6_GPIO_Port GPIOG
-#define UART_DIR_5_Pin GPIO_PIN_7
-#define UART_DIR_5_GPIO_Port GPIOB
-#define UART_DIR_8_Pin GPIO_PIN_8
-#define UART_DIR_8_GPIO_Port GPIOB
-
-/* ########################## Assert Selection ############################## */
-/**
-  * @brief Uncomment the line below to expanse the "assert_param" macro in the 
-  *        HAL drivers code
-  */
-/* #define USE_FULL_ASSERT    1U */
-
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
-
-#ifdef __cplusplus
- extern "C" {
-#endif
-void _Error_Handler(char *, int);
-
-#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* __MAIN_H__ */
+#endif /* __SD_DISKIO_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+

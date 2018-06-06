@@ -1,8 +1,8 @@
 /**
-  ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
+ ******************************************************************************
+  * @file    bsp_driver_sd.h (based on stm32756g_eval_sd.h)
+  * @brief   This file contains the common defines and functions prototypes for 
+  *          the bsp_driver_sd.c driver.
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -48,65 +48,68 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H__
-#define __MAIN_H__
-
-/* Includes ------------------------------------------------------------------*/
-
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Private define ------------------------------------------------------------*/
-
-#define SPI_DIR_4_Pin GPIO_PIN_3
-#define SPI_DIR_4_GPIO_Port GPIOE
-#define CLOCK_OUT_EN_Pin GPIO_PIN_0
-#define CLOCK_OUT_EN_GPIO_Port GPIOF
-#define SPI_DIR_5_Pin GPIO_PIN_8
-#define SPI_DIR_5_GPIO_Port GPIOF
-#define SDIO_CD_Pin GPIO_PIN_5
-#define SDIO_CD_GPIO_Port GPIOC
-#define LED_1_Pin GPIO_PIN_2
-#define LED_1_GPIO_Port GPIOG
-#define LED_2_Pin GPIO_PIN_3
-#define LED_2_GPIO_Port GPIOG
-#define LED_3_Pin GPIO_PIN_4
-#define LED_3_GPIO_Port GPIOG
-#define SPI_DIR_3_Pin GPIO_PIN_11
-#define SPI_DIR_3_GPIO_Port GPIOC
-#define UART_DIR_4_Pin GPIO_PIN_0
-#define UART_DIR_4_GPIO_Port GPIOD
-#define UART_DIR_2_Pin GPIO_PIN_4
-#define UART_DIR_2_GPIO_Port GPIOD
-#define SPI_DIR_6_Pin GPIO_PIN_15
-#define SPI_DIR_6_GPIO_Port GPIOG
-#define UART_DIR_5_Pin GPIO_PIN_7
-#define UART_DIR_5_GPIO_Port GPIOB
-#define UART_DIR_8_Pin GPIO_PIN_8
-#define UART_DIR_8_GPIO_Port GPIOB
-
-/* ########################## Assert Selection ############################## */
-/**
-  * @brief Uncomment the line below to expanse the "assert_param" macro in the 
-  *        HAL drivers code
-  */
-/* #define USE_FULL_ASSERT    1U */
-
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
+#ifndef __STM32F7_SD_H
+#define __STM32F7_SD_H
 
 #ifdef __cplusplus
  extern "C" {
-#endif
-void _Error_Handler(char *, int);
+#endif 
 
-#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
+/* Includes ------------------------------------------------------------------*/
+#include "stm32f7xx_hal.h"
+
+/* Exported types --------------------------------------------------------*/ 
+/** 
+  * @brief SD Card information structure 
+  */
+#define BSP_SD_CardInfo HAL_SD_CardInfoTypeDef
+
+/* Exported constants --------------------------------------------------------*/ 
+/**
+  * @brief  SD status structure definition  
+  */     
+#define   MSD_OK                        ((uint8_t)0x00)
+#define   MSD_ERROR                     ((uint8_t)0x01)
+#define   MSD_ERROR_SD_NOT_PRESENT      ((uint8_t)0x02)
+
+/** 
+  * @brief  SD transfer state definition  
+  */     
+#define   SD_TRANSFER_OK                ((uint8_t)0x00)
+#define   SD_TRANSFER_BUSY              ((uint8_t)0x01)
+
+#define SD_PRESENT               ((uint8_t)0x01)
+#define SD_NOT_PRESENT           ((uint8_t)0x00)
+#define SD_DATATIMEOUT           ((uint32_t)100000000)
+
+#ifdef OLD_API
+/* kept to avoid issue when migrating old projects. */
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */ 
+#else
+/* USER CODE BEGIN BSP_H_CODE */
+
+/* Exported functions --------------------------------------------------------*/   
+uint8_t BSP_SD_Init(void);
+uint8_t BSP_SD_ITConfig(void);
+void    BSP_SD_DetectIT(void);
+void    BSP_SD_DetectCallback(void);
+uint8_t BSP_SD_ReadBlocks(uint32_t *pData, uint32_t ReadAddr, uint32_t NumOfBlocks, uint32_t Timeout);
+uint8_t BSP_SD_WriteBlocks(uint32_t *pData, uint32_t WriteAddr, uint32_t NumOfBlocks, uint32_t Timeout);
+uint8_t BSP_SD_ReadBlocks_DMA(uint32_t *pData, uint32_t ReadAddr, uint32_t NumOfBlocks);
+uint8_t BSP_SD_WriteBlocks_DMA(uint32_t *pData, uint32_t WriteAddr, uint32_t NumOfBlocks);
+uint8_t BSP_SD_Erase(uint32_t StartAddr, uint32_t EndAddr);
+uint8_t BSP_SD_GetCardState(void);
+void    BSP_SD_GetCardInfo(BSP_SD_CardInfo *CardInfo);
+uint8_t BSP_SD_IsDetected(void);
+/* USER CODE END BSP_H_CODE */
+#endif
+   
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __MAIN_H__ */
+#endif /* __STM32F7_SD_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
