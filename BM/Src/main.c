@@ -1,3 +1,4 @@
+
 /**
   ******************************************************************************
   * @file           : main.c
@@ -49,6 +50,7 @@
 #include "main.h"
 #include "stm32f7xx_hal.h"
 #include "fatfs.h"
+#include "usb_device.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -76,8 +78,6 @@ UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart2;
 USART_HandleTypeDef husart6;
 
-PCD_HandleTypeDef hpcd_USB_OTG_FS;
-
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
@@ -88,7 +88,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_TIM1_Init(void);
-static void MX_USB_OTG_FS_PCD_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_USART6_Init(void);
 static void MX_UART8_Init(void);
@@ -141,7 +140,6 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_TIM1_Init();
-  MX_USB_OTG_FS_PCD_Init();
   MX_SPI2_Init();
   MX_USART6_Init();
   MX_UART8_Init();
@@ -154,6 +152,7 @@ int main(void)
   MX_SPI6_Init();
   MX_SDMMC2_SD_Init();
   MX_FATFS_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   HAL_TIM_Base_Start_IT(&htim1);
@@ -450,7 +449,7 @@ static void MX_UART4_Init(void)
 
   huart4.Instance = UART4;
   huart4.Init.BaudRate = 115200;
-  huart4.Init.WordLength = UART_WORDLENGTH_7B;
+  huart4.Init.WordLength = UART_WORDLENGTH_8B;
   huart4.Init.StopBits = UART_STOPBITS_1;
   huart4.Init.Parity = UART_PARITY_NONE;
   huart4.Init.Mode = UART_MODE_TX_RX;
@@ -471,7 +470,7 @@ static void MX_UART5_Init(void)
 
   huart5.Instance = UART5;
   huart5.Init.BaudRate = 115200;
-  huart5.Init.WordLength = UART_WORDLENGTH_7B;
+  huart5.Init.WordLength = UART_WORDLENGTH_8B;
   huart5.Init.StopBits = UART_STOPBITS_1;
   huart5.Init.Parity = UART_PARITY_NONE;
   huart5.Init.Mode = UART_MODE_TX_RX;
@@ -492,7 +491,7 @@ static void MX_UART8_Init(void)
 
   huart8.Instance = UART8;
   huart8.Init.BaudRate = 115200;
-  huart8.Init.WordLength = UART_WORDLENGTH_7B;
+  huart8.Init.WordLength = UART_WORDLENGTH_8B;
   huart8.Init.StopBits = UART_STOPBITS_1;
   huart8.Init.Parity = UART_PARITY_NONE;
   huart8.Init.Mode = UART_MODE_TX_RX;
@@ -513,7 +512,7 @@ static void MX_USART2_UART_Init(void)
 
   huart2.Instance = USART2;
   huart2.Init.BaudRate = 115200;
-  huart2.Init.WordLength = UART_WORDLENGTH_7B;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
   huart2.Init.Mode = UART_MODE_TX_RX;
@@ -534,7 +533,7 @@ static void MX_USART6_Init(void)
 
   husart6.Instance = USART6;
   husart6.Init.BaudRate = 115200;
-  husart6.Init.WordLength = USART_WORDLENGTH_7B;
+  husart6.Init.WordLength = USART_WORDLENGTH_8B;
   husart6.Init.StopBits = USART_STOPBITS_1;
   husart6.Init.Parity = USART_PARITY_NONE;
   husart6.Init.Mode = USART_MODE_TX_RX;
@@ -542,28 +541,6 @@ static void MX_USART6_Init(void)
   husart6.Init.CLKPhase = USART_PHASE_1EDGE;
   husart6.Init.CLKLastBit = USART_LASTBIT_DISABLE;
   if (HAL_USART_Init(&husart6) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
-
-}
-
-/* USB_OTG_FS init function */
-static void MX_USB_OTG_FS_PCD_Init(void)
-{
-
-  hpcd_USB_OTG_FS.Instance = USB_OTG_FS;
-  hpcd_USB_OTG_FS.Init.dev_endpoints = 6;
-  hpcd_USB_OTG_FS.Init.speed = PCD_SPEED_FULL;
-  hpcd_USB_OTG_FS.Init.dma_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.ep0_mps = DEP0CTL_MPS_64;
-  hpcd_USB_OTG_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
-  hpcd_USB_OTG_FS.Init.Sof_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.low_power_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.lpm_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.vbus_sensing_enable = ENABLE;
-  hpcd_USB_OTG_FS.Init.use_dedicated_ep1 = DISABLE;
-  if (HAL_PCD_Init(&hpcd_USB_OTG_FS) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }

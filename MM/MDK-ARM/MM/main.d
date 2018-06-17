@@ -27,3 +27,16 @@ mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sai.h
+mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sai_ex.h
+mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
+mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_usart.h
+mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
+mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
+mm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
+mm\main.o: ../Inc/usb_device.h
+mm\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
+mm\main.o: ../Inc/usbd_conf.h
+mm\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+mm\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
