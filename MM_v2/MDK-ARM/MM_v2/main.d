@@ -32,11 +32,3 @@ mm_v2\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sai_ex.h
 mm_v2\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 mm_v2\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 mm_v2\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_usart.h
-mm_v2\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
-mm_v2\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
-mm_v2\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
-mm_v2\main.o: ../Inc/usb_device.h
-mm_v2\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
-mm_v2\main.o: ../Inc/usbd_conf.h
-mm_v2\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-mm_v2\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
